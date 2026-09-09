@@ -1,0 +1,6 @@
+{
+  "name": "Robótica Sem Telas",
+  "description": "Landing page de alta conversão para infoproduto de projetos de robótica em PDF para crianças de 4 a 12 anos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

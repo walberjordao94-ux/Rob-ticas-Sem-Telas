@@ -16,7 +16,7 @@ import {
 interface CheckoutModalProps {
   isOpen: boolean;
   onClose: () => void;
-  plan?: 'basic' | 'complete';
+  plan?: 'basic' | 'complete' | 'upgrade';
 }
 
 export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, plan = 'complete' }) => {
@@ -30,7 +30,15 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, p
   if (!isOpen) return null;
 
   const isBasic = plan === 'basic';
-  const priceFormatted = isBasic ? 'R$ 17,00' : 'R$ 29,00';
+  const isUpgrade = plan === 'upgrade';
+  
+  const priceFormatted = isBasic ? 'R$ 17,00' : isUpgrade ? 'R$ 22,00' : 'R$ 29,00';
+  const originalPrice = isBasic ? 'De R$ 67,00' : isUpgrade ? 'De R$ 29,00' : 'De R$ 238,00';
+  const badgeText = isBasic
+    ? 'PLANO BÁSICO'
+    : isUpgrade
+    ? 'UPGRADE EXCLUSIVO'
+    : 'ECONOMIA DE R$ 209,00';
 
   const pixCode =
     '00020126580014br.gov.bcb.pix0136robotica-sem-telas-pdf-2026520400005303986540547.005802BR5923Robotica Educacional6009Sao Paulo62070503***6304E8A2';
@@ -74,11 +82,17 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, p
                 <span>Download Digital Instantâneo</span>
               </div>
               <h3 className="font-serif text-2xl font-bold text-[#1A1A1A]">
-                {isBasic ? 'Finalize seu Acesso ao Pacote Básico' : 'Finalize seu Acesso ao Pacote Completo'}
+                {isBasic
+                  ? 'Finalize seu Acesso ao Pacote Básico'
+                  : isUpgrade
+                  ? 'Finalize seu Acesso com o Upgrade Especial'
+                  : 'Finalize seu Acesso ao Pacote Completo'}
               </h3>
               <p className="text-stone-600 text-xs sm:text-sm mt-1">
                 {isBasic
                   ? 'Acesso imediato aos +100 projetos em PDF de alta resolução.'
+                  : isUpgrade
+                  ? 'Acesso vitalício aos +100 projetos em PDF + 3 Bônus Exclusivos ($28 em bônus inclusos).'
                   : 'Acesso vitalício aos +100 projetos em PDF + 3 Bônus Exclusivos.'}
               </p>
             </div>
@@ -87,14 +101,14 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, p
             <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4 flex items-center justify-between">
               <div>
                 <p className="text-xs text-stone-500 font-medium line-through">
-                  {isBasic ? 'De R$ 67,00' : 'De R$ 238,00'}
+                  {originalPrice}
                 </p>
                 <p className="text-lg font-bold text-[#E8632C]">
                   Por apenas {priceFormatted}
                 </p>
               </div>
               <span className="bg-[#8BC34A] text-stone-900 text-xs font-bold px-3 py-1 rounded-full">
-                {isBasic ? 'PLANO BÁSICO' : 'ECONOMIA DE R$ 209,00'}
+                {badgeText}
               </span>
             </div>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ShieldCheck,
   Check,
@@ -11,13 +11,33 @@ import {
   Clock,
 } from 'lucide-react';
 import { useCountdown } from '../hooks/useCountdown';
+import { UpsellModal } from './UpsellModal';
 
 interface FinalOfferProps {
-  onCtaClick: (plan?: 'basic' | 'complete') => void;
+  onCtaClick: (plan?: 'basic' | 'complete' | 'upgrade') => void;
 }
 
 export const FinalOffer: React.FC<FinalOfferProps> = ({ onCtaClick }) => {
   const { formattedTime } = useCountdown();
+  const [isUpsellOpen, setIsUpsellOpen] = useState(false);
+
+  const handleBasicCtaClick = () => {
+    setIsUpsellOpen(true);
+  };
+
+  const handleAcceptUpsell = () => {
+    setIsUpsellOpen(false);
+    onCtaClick('upgrade');
+  };
+
+  const handleDeclineUpsell = () => {
+    setIsUpsellOpen(false);
+    onCtaClick('basic');
+  };
+
+  const handleCloseUpsell = () => {
+    setIsUpsellOpen(false);
+  };
 
   return (
     <section
@@ -68,7 +88,7 @@ export const FinalOffer: React.FC<FinalOfferProps> = ({ onCtaClick }) => {
           {/* CARD 1 - PACOTE BÁSICO (Aparece primeiro / acima de R$ 29,00) */}
           <div
             id="plan-card-basic"
-            className="order-1 bg-white rounded-3xl p-6 sm:p-8 md:p-9 border border-stone-200/90 shadow-md flex flex-col justify-between h-full transition-all duration-300 hover:shadow-lg"
+            className="order-1 bg-white rounded-3xl p-6 sm:p-8 md:p-9 border-2 border-black shadow-md flex flex-col justify-between h-full transition-all duration-300 hover:shadow-lg"
           >
             <div>
               {/* Header Info */}
@@ -179,7 +199,7 @@ export const FinalOffer: React.FC<FinalOfferProps> = ({ onCtaClick }) => {
               <button
                 type="button"
                 id="plan-basic-cta-button"
-                onClick={() => onCtaClick('basic')}
+                onClick={handleBasicCtaClick}
                 className="w-full bg-stone-100 hover:bg-stone-200 active:bg-stone-300 text-stone-800 font-bold text-sm sm:text-base py-3.5 px-6 rounded-full border border-stone-300 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
               >
                 <span>QUERO O BÁSICO</span>
@@ -394,6 +414,14 @@ export const FinalOffer: React.FC<FinalOfferProps> = ({ onCtaClick }) => {
         </div>
 
       </div>
+
+      {/* Upsell / Order Bump Modal */}
+      <UpsellModal
+        isOpen={isUpsellOpen}
+        onAccept={handleAcceptUpsell}
+        onDecline={handleDeclineUpsell}
+        onClose={handleCloseUpsell}
+      />
     </section>
   );
 };

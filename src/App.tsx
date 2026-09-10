@@ -15,9 +15,9 @@ import { CheckoutModal } from './components/CheckoutModal';
 
 export default function App() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<'basic' | 'complete'>('complete');
+  const [selectedPlan, setSelectedPlan] = useState<'basic' | 'complete' | 'upgrade'>('complete');
 
-  const handleOpenCheckout = (plan?: 'basic' | 'complete') => {
+  const handleOpenCheckout = (plan?: 'basic' | 'complete' | 'upgrade') => {
     if (plan) {
       setSelectedPlan(plan);
     }

@@ -36,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
 
             {/* Subtitle / Paragraph */}
             <p className="font-sans text-gray-500 font-light text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl text-center mx-auto">
-              Diversão que realmente ensina. Com materiais simples do dia a dia e guias em PDF passo a passo, seu filho aprende, brinca e cresce, longe das telas.
+              Diversão que <strong className="font-bold text-gray-800">realmente ensina</strong>. Com materiais simples do dia a dia e guias em PDF passo a passo, seu filho aprende, brinca e cresce, longe das telas.
             </p>
 
             {/* Social Proof Badges: Overlapping Colorful Initial Avatars + Gold Stars + Text */}

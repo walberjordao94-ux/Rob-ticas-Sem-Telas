@@ -14,7 +14,7 @@ import { useCountdown } from '../hooks/useCountdown';
 import { UpsellModal } from './UpsellModal';
 
 interface FinalOfferProps {
-  onCtaClick: (plan?: 'basic' | 'complete' | 'upgrade') => void;
+  onCtaClick?: (plan?: 'basic' | 'complete' | 'upgrade') => void;
 }
 
 export const FinalOffer: React.FC<FinalOfferProps> = ({ onCtaClick }) => {
@@ -27,12 +27,10 @@ export const FinalOffer: React.FC<FinalOfferProps> = ({ onCtaClick }) => {
 
   const handleAcceptUpsell = () => {
     setIsUpsellOpen(false);
-    onCtaClick('upgrade');
   };
 
   const handleDeclineUpsell = () => {
     setIsUpsellOpen(false);
-    onCtaClick('basic');
   };
 
   const handleCloseUpsell = () => {
@@ -196,15 +194,20 @@ export const FinalOffer: React.FC<FinalOfferProps> = ({ onCtaClick }) => {
 
             {/* CTA Button */}
             <div className="pt-4 border-t border-stone-100">
-              <button
-                type="button"
+              <a
                 id="plan-basic-cta-button"
-                onClick={handleBasicCtaClick}
+                href="https://pay.kiwify.com.br/c8bkBJb"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleBasicCtaClick();
+                }}
                 className="w-full bg-stone-100 hover:bg-stone-200 active:bg-stone-300 text-stone-800 font-bold text-sm sm:text-base py-3.5 px-6 rounded-full border border-stone-300 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
               >
                 <span>QUERO O BÁSICO</span>
                 <ArrowRight className="w-4 h-4 text-stone-500" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -363,15 +366,16 @@ export const FinalOffer: React.FC<FinalOfferProps> = ({ onCtaClick }) => {
 
             {/* Big Primary CTA Button */}
             <div className="pt-4 border-t border-orange-100">
-              <button
-                type="button"
+              <a
                 id="plan-complete-cta-button"
-                onClick={() => onCtaClick('complete')}
+                href="https://pay.kiwify.com.br/rVnhxRM"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full bg-[#E8632C] hover:bg-[#C94E1B] text-white font-extrabold text-base sm:text-lg py-4 px-6 rounded-full shadow-lg shadow-orange-600/30 hover:shadow-xl hover:shadow-orange-600/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>QUERO O PACOTE COMPLETO</span>
                 <ArrowRight className="w-5 h-5 stroke-[2.5]" />
-              </button>
+              </a>
               <p className="text-[11px] text-stone-500 text-center mt-2 font-medium">
                 ⚡ Liberação imediata + todos os bônus inclusos
               </p>

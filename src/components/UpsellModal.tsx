@@ -174,26 +174,30 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({
         {/* Action Buttons */}
         <div className="mt-4 space-y-2.5 text-center">
           {/* Main CTA Button */}
-          <button
-            type="button"
+          <a
             id="upsell-accept-button"
+            href="https://pay.kiwify.com.br/qHI9ZRy"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onAccept}
             className="w-full bg-[#E8632C] hover:bg-[#C94E1B] active:bg-[#B34013] text-white font-black text-sm sm:text-base py-3.5 sm:py-4 px-6 rounded-full shadow-lg hover:shadow-orange-500/30 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 group active:scale-[0.99]"
           >
             <span>SIM! QUERO O PACOTE COMPLETO POR R$22</span>
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </a>
 
           {/* Secondary Decline Link */}
           <div>
-            <button
-              type="button"
+            <a
               id="upsell-decline-link"
+              href="https://pay.kiwify.com.br/c8bkBJb"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={onDecline}
-              className="text-xs sm:text-[13px] text-stone-500 hover:text-stone-800 underline decoration-stone-300 hover:decoration-stone-600 transition-colors py-1 cursor-pointer font-medium"
+              className="text-xs sm:text-[13px] text-stone-500 hover:text-stone-800 underline decoration-stone-300 hover:decoration-stone-600 transition-colors py-1 cursor-pointer font-medium inline-block"
             >
               Não, prefiro ficar só com o pacote básico e perder os bônus
-            </button>
+            </a>
           </div>
 
           {/* Reinforcement Text */}

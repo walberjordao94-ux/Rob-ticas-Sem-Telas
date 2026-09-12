@@ -62,7 +62,7 @@ export const VSLSection: React.FC<VSLSectionProps> = ({ onCtaClick }) => {
               <div className="w-full max-w-[320px] sm:max-w-[340px] bg-stone-900/90 rounded-3xl p-3 border-2 border-stone-700 shadow-2xl">
                 <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-inner">
                   <iframe
-                    src="https://www.youtube.com/embed/4C2HQK-ZFQc"
+                    src="https://www.youtube.com/embed/w8p_l1zH0pc"
                     title="Demonstração Robótica Sem Telas"
                     className="w-full h-full border-0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
